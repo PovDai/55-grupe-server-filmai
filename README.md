@@ -23,6 +23,7 @@
 -   movie categories list
 -   movie category item
 -   logout
+-   
 
 ## ADMIN
 
