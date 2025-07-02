@@ -7,18 +7,15 @@ import { PageRegister } from './pages/Register.js';
 import { PageMovies } from './pages/Movies.js';
 import { PageLogin } from './pages/Login.js';
 import { PageTest } from './pages/Something.js';
+import { publicRouter } from './routes/publicRouter.js';
 
 
 const app = express();
 
-app.use(express.static('public'));
 
-app.get('/', (req, res) => res.send(new PageHome().render()));
-app.get('/movies', (req, res) => res.send(new PageMovies().render()));
-app.get('/categories', (req, res) => res.send(new PageCategories().render()));
-app.get('/login', (req, res) => res.send(new PageLogin().render()));
-app.get('/register', (req, res) => res.send(new PageRegister().render()));
-app.get('/test', (req, res) => res.send(new PageTest().render()));
+app.use(express.static('public'));
+app.use('/',publicRouter)
+
 
 
 app.get('*error', (req, res) => res.send(new PageError404().render()));
