@@ -16,7 +16,7 @@ export function registerForm() {
                         <input id="password" type="password" class="form-control fs-5" required>
                     </div>
                     <div class="mb-4">
-                        <input class="form-check-input me-2 mt-0" style="width: 1.5rem; height: 1.5rem;" type="checkbox" value="agree" id="tos">
+                        <input class="form-check-input me-2 mt-0" style="width: 1.5rem; height: 1.5rem;" type="checkbox" value="agree" id="tos" required>
                         <label style="line-height: 1.5rem;" for="tos">Agree to our Terms of Service</label>
                     </div>
                     <div class="mb-4">
