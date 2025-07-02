@@ -5,7 +5,7 @@ import { someTesting } from "../ui/somethingTest.js";
 
 export class PageTest extends PageTemplate {
     main() {
-        // Pridedame SVG sprite su checkmark simboliu
+        // Pridedame SVG sprite su checkmark simboliu kad veiktu svg checkai
         const svgSprite = `
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="check" viewBox="0 0 16 16">
