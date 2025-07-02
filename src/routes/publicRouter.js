@@ -14,3 +14,5 @@ publicRouter.get('/categories', (req, res) => res.send(new PageCategories().rend
 publicRouter.get('/login', (req, res) => res.send(new PageLogin().render()));
 publicRouter.get('/register', (req, res) => res.send(new PageRegister().render()));
 publicRouter.get('/test', (req, res) => res.send(new PageTest().render()));
+
+

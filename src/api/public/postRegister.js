@@ -1,9 +1,6 @@
-export function postRegister(req,res) {
-    
+export function postRegister(req, res) {
     return res.json({
-        status: 'sucess',
-        msg:'Sekminga registracija'
-
-    })
-
+        status: 'success',
+        msg: 'Sekminga registracija',
+    });
 }
