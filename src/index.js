@@ -8,6 +8,7 @@ import { publicApiRouter } from './routes/publicApiRouter.js';
 
 
 const app = express();
+app.use(express.json()); // reikalinga isparsinti json faila kad suvaiksciotu 
 
 
 app.use(express.static('public'));
