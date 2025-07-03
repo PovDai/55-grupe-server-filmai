@@ -96,19 +96,20 @@ export class IsValid {
 
         return [false, ''];
     }
+
     static email(text) {
-        return [false,'']
-        
+        return [false, ''];
     }
+
     static tos(text) {
         if (typeof text !== 'string') {
-            return [true,'Sutikimas su taisyklemis turi buti teksto tipo']
-            
+            return [true, 'Sutikimas su taisyklemis turi buti teksto tipo.'];
         }
+
         if (text !== 'agree') {
-            return [true,'Sutikimas turi buti naudojant zodi:"agree']
+            return [true, 'Sutikimas turi buti naudojant zodi "agree".'];
         }
-        return [false,'']
-        
+
+        return [false, ''];
     }
 }

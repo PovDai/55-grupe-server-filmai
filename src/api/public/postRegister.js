@@ -3,7 +3,7 @@ import { IsValid } from "../../lib/IsValid.js";
 
 export async function postRegister(req, res) {/// async asinkronine funkcija sincronizacijai
     const [err, msg] = IsValid.fields(req.body, {
-        username: 'username',
+        username: 'username', // validavimo funkciojos cia issauskiamos
         email: 'email',
         password: 'password',
         tos:'tos',
