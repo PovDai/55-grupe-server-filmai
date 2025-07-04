@@ -18,9 +18,9 @@ export async function postRegister(req, res) {/// async asinkronine funkcija sin
     const { username, email, password } = req.body;
 
     try { /// try apsauga no kodo kuris gali crashint ir sustabdyti serveri.
-        const sql = `INSERT INTO users (username, email, password) VALUES (?, ?, ? );`;
+        const sql = `INSERT INTO users (username, email, password) VALUES (?, ?, ? );`; // konkreciai irasymo eilute i db nes insertas
 
-        const response = await connection.execute(sql, [username, email, password])
+        const response = await connection.execute(sql, [username, email, password]) // per cia irasomna i duomenu baze registruojami duomenys 
         
         console.log(response);
         
@@ -29,8 +29,6 @@ export async function postRegister(req, res) {/// async asinkronine funkcija sin
         console.log(error);
         
     }
-
-
 
     return res.json({
         status: 'success',
