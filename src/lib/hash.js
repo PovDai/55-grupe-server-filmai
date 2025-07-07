@@ -1,13 +1,10 @@
-
-import { log } from 'console';
-import {createHash} from 'crypto'
+import { createHash } from 'crypto';
 
 export function hash(text) {
-
     try {
-        return createHash('sha256').update(text).digest('hex');
-    }catch (error) {
+        return createHash('sha512').update(text).digest('hex');
+    } catch (error) {
         return '';
     }
-
 }
+

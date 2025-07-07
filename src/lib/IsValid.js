@@ -112,4 +112,13 @@ export class IsValid {
 
         return [false, ''];
     }
+    static nonEmptyString() {
+        if (typeof text !== 'string') {
+            return [true,'Turi buti tekstas']
+        }
+        if (text.length === 0) {
+            return [true,'Tekstas turi buti tuscias']
+        }
+        return [false, ''];
+    }
 }

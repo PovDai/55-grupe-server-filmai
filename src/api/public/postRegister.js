@@ -1,77 +1,69 @@
 import { connection } from "../../db.js";
+import { hash } from "../../lib/hash.js";
 import { IsValid } from "../../lib/IsValid.js";
+import { randomString } from "../../lib/randomString.js";
 
-export async function postRegister(req, res) {/// async asinkronine funkcija sincronizacijai
+export async function postRegister(req, res) {
     const [err, msg] = IsValid.fields(req.body, {
-        username: 'username', // validavimo funkciojos cia issauskiamos
+        username: 'username',
         email: 'email',
         password: 'password',
-        tos:'tos',
-    })
+        tos: 'tos',
+    });
+
     if (err) {
         return res.json({
-
             status: 'error',
             msg: msg,
         });
     }
+
     const { username, email, password } = req.body;
 
     try {
-        const sql = 'SELECT  * FROM  users WHERE username= ? OR email= ?;'; // konkreciai irasymo eilute i db nes insertas
-        const [response] = await connection.execute(sql, [username, email]) 
-
-        console.log(response)
+        const sql = `SELECT * FROM users WHERE username = ? OR email = ?;`;
+        const [response] = await connection.execute(sql, [username, email]);
 
         if (response.length > 0) {
             return res.status(400).json({
                 status: 'error',
-                msg: 'Toks vartotojas jau uzregistruotas'
+                msg: 'Toks vartotojas jau uzregistruotas',
             });
         }
-    }
-
-    catch (error) {
+    } catch (error) {
         console.log(error);
         return res.status(500).json({
             status: 'error',
             msg: 'Serverio klaida',
         });
-    
-}
-    const passwordHash = hash(password);
+    }
 
+    const salt = randomString(10);
+    const passwordHash = hash(password+salt);
 
+    try {
+        const sql = `INSERT INTO users (username, email,salt, password_hash) VALUES (?,?, ?, ?);`;
+        const [response] = await connection.execute(sql, [username, email,salt, passwordHash]);
 
-    try { /// try apsauga no kodo kuris gali crashint ir sustabdyti serveri.
-        const sql = `INSERT INTO users (username, email, password) VALUES (?, ?, ? );`; // konkreciai irasymo eilute i db nes insertas
-
-        const response = await connection.execute(sql, [username, email, passwordHash]) // per cia irasomna i duomenu baze registruojami duomenys
         if (response.affectedRows !== 1) {
             return res.status(500).json({
                 status: 'error',
-                msg: 'Serverio klaida'
+                msg: 'Serverio klaida',
             });
         }
-        
-
-
-        console.log(response);
-        
     } catch (error) {
         if (error.code === 'ER_DUP_ENTRY') {
             return res.status(500).json({
                 status: 'error',
-                msg:'kartojasi irasas'
-            })
+                msg: 'kartojasi irasas...',
+            });
         }
 
         console.log(error);
         return res.status(500).json({
             status: 'error',
-            msg:'Serverio klaida',
-        })
-        
+            msg: 'Serverio klaida',
+        });
     }
 
     return res.status(201).json({
