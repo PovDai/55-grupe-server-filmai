@@ -39,14 +39,14 @@ export async function postRegister(req, res) {/// async asinkronine funkcija sin
         });
     
 }
-
+    const passwordHash = hash(password);
 
 
 
     try { /// try apsauga no kodo kuris gali crashint ir sustabdyti serveri.
         const sql = `INSERT INTO users (username, email, password) VALUES (?, ?, ? );`; // konkreciai irasymo eilute i db nes insertas
 
-        const response = await connection.execute(sql, [username, email, password]) // per cia irasomna i duomenu baze registruojami duomenys
+        const response = await connection.execute(sql, [username, email, passwordHash]) // per cia irasomna i duomenu baze registruojami duomenys
         if (response.affectedRows !== 1) {
             return res.status(500).json({
                 status: 'error',
