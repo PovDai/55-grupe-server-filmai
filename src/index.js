@@ -1,9 +1,6 @@
 import express from 'express';
 import { PORT } from './env.js';
-
 import { PageError404 } from './pages/public/Error404.js';
-
-
 import { publicApiRouter } from './routes/publicApiRouter.js';
 import { cookieParser } from './middleware/cookieParser.js';
 import { userData } from './middleware/userData.js';

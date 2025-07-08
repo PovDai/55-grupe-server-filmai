@@ -1,27 +1,62 @@
-export class IsValid {
-    static fields(data, schema) {
-        const errors = {};
+export class IsValid {//Eksportuojama klasė IsValid, skirta duomenų validacijai
+    static fields(data, schema) { 
+        /*Statinis metodas fields, kuris priima:
 
-        const requiredKeysCount = Object.keys(schema).length;
-        const dataKeysCount = Object.keys(data).length;
+data - validuojamus duomenis (objektas)
+
+schema - validavimo schemą (objektas)*/
+        const errors = {}; //Sukuriamas tuščias objektas errors, kuriame bus saugomos validavimo klaidos
+
+        const requiredKeysCount = Object.keys(schema).length; //Suskaičiuojamas reikalingų laukų skaičius iš validavimo schemos
+        const dataKeysCount = Object.keys(data).length; //Suskaičiuojamas gautų duomenų laukų skaičius
 
         if (dataKeysCount !== requiredKeysCount) {
             return [true, 'Atejusiuose duomenyse duomenu kiekis nesutampa su reikalaujamu duomenu apimtimi'];
         }
+        /*Jei gautų duomenų laukų skaičius nesutampa su reikalingu, grąžinama klaida:
 
-        for (const key in schema) {
-            const funcName = schema[key];
-            const func = IsValid[funcName];
-            const value = data[key];
+true - klaidos buvimas
+
+Klaidos pranešimas apie nesutampantį laukų skaiči*/
+
+        for (const key in schema) { //Ciklas per visus validavimo schemos raktus (laukus)
+            const funcName = schema[key]; //Gaunamas validavimo funkcijos pavadinimas iš schemos
+            const func = IsValid[funcName]; //Gaunama pati validavimo funkcija iš klasės metodų
+            const value = data[key]; //Iš duomenų paimama reikšmė, kurią reikia validuoti
             const [err, msg] = func(value);
+            /*Iškviečiama validavimo funkcija su reikšme, gaunamas rezultatas:
+
+err - ar yra klaida (boolean)
+
+msg - klaidos pranešimas (jei yra)*/
 
             if (err) {
-                errors[key] = msg;
+                errors[key] = msg; //Jei validavimas nepavyko, klaida įrašoma į errors objektą su atitinkamu raktu
             }
         }
 
         return [Object.keys(errors).length > 0, errors];
+        /*Grąžinamas validavimo rezultatas:
+
+Pirmas elementas - ar yra klaidų (boolean)
+
+Antras elementas - objektas su klaidomis (jei yra)*/
     }
+    /*Tikrina, ar gautų duomenų struktūra atitinka schemą
+
+Kiekvienam laukui pritaiko atitinkamą validavimo funkciją
+
+Surinktas klaidas grąžina struktūruota forma
+
+Norint naudoti šią klasę, reikia turėti papildomus validavimo metodus klasėje IsValid, pvz.:
+
+nonEmptyString
+
+email
+
+password
+
+etc.*/
 
     static username(text) {
         const minSize = 3;
