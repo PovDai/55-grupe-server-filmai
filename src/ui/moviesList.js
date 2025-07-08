@@ -1,4 +1,4 @@
-import { moviesData } from "../data/movieData.js";
+import { moviesData } from "../data/moviesData.js";
 import { formatDuration } from "../lib/formatDuration.js";
 
 

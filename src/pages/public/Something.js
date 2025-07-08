@@ -1,6 +1,6 @@
-import { testData } from "../data/testData.js";
-import { PageTemplate } from "../templates/PageTemplate.js";
-import { someTesting } from "../ui/somethingTest.js";
+import { testData } from "../../data/testData.js";
+import { PageTemplate } from "../../templates/PageTemplate.js";
+import { someTesting } from "../../ui/somethingTest.js";
 
 
 export class PageTest extends PageTemplate {
