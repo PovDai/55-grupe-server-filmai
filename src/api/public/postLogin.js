@@ -1,4 +1,5 @@
 import { connection } from "../../db.js";
+import { COOKIE_MAX_AGE } from "../../env.js";
 import { hash } from "../../lib/hash.js";
 import { IsValid } from "../../lib/IsValid.js";
 import { randomString } from "../../lib/randomString.js";
@@ -79,7 +80,7 @@ export async function postLogin(req, res) {
     const cookieParams = [
         `loginToken=${loginTokenString}`,
         'domain=localhost',
-        'max-age=3600',
+        'max-age='+ COOKIE_MAX_AGE,
         'HttpOnly',
         'path=/',
         'Secure',

@@ -27,4 +27,5 @@ export const DB_USER = process.env.DB_USER ?? 'test_user';
 export const DB_PASSWORD = process.env.DB_PASSWORD ?? 'test_password';
 export const DB_HOST = process.env.DB_HOST ?? 'localhost';
 export const DB_PORT = +process.env.DB_PORT ?? 3306; /// + reikalingas kad padarytu i skaitine forma
+export const COOKIE_MAX_AGE = +process.env.COOKIE_MAX_AGE ?? 3600;
 

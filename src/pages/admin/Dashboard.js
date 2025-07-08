@@ -1,12 +1,13 @@
+import { COOKIE_MAX_AGE } from "../../env.js";
 import { PageTemplate } from "../../templates/PageTemplate.js";
 
 export class PageDashboard extends PageTemplate {
     main() {
         const now = Date.now();
         const cookie = this.req.user.login_token_created_at.getTime();
-        const cookieMaxAge = 3600;
+       
 
-        const secondsLeft=Math.floor(cookieMaxAge-(Date.now()))
+        const secondsLeft=Math.floor(COOKIE_MAX_AGE-(Date.now()-cookie)/1000)
         const seconds = secondsLeft % 60;
         const minutes = (secondsLeft - seconds) / 60;
       
