@@ -23,6 +23,8 @@ app.use('/', publicApiRouter);
 app.use('/', adminPageRouter);
 
 
+
+
 app.get('*error', (req, res) => res.send(new PageError404(req).render()));
 
 app.listen(PORT, () => {

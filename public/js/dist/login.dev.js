@@ -37,7 +37,9 @@ if (formDOM) {
     }) //Apdorojamas atsakymas iš serverio - konvertuojamas iš JSON formato į JavaScript objektą.
     .then(function (data) {
       //Gauti duomenys iš serverio atsakymo išvedami į konsolę.
-      console.log(data);
+      if (data.status === 'success' && data.action === 'redirect') {
+        location.href = data.href; /// paprasta komanda kuri is klientines puses nukreipia i norima siuo atveju /admin nuoroda.Cia imi is Postlogin json objekto
+      }
     })["catch"](console.error);
   });
 }

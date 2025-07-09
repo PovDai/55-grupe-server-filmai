@@ -175,7 +175,9 @@ function postLogin(req, res) {
           }).json({
             status: 'success',
             //Nustatomas Set-Cookie antraštė su suformatuotais parametrais ir grąžinamas sėkmingas atsakas.
-            msg: 'Tu buvai sekmingai prijungtas prie sistemos'
+            msg: 'Tu buvai sekmingai prijungtas prie sistemos',
+            action: 'redirect',
+            href: '/admin'
           }));
 
         case 44:

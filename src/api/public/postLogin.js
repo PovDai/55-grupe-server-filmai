@@ -128,6 +128,9 @@ HttpOnly, Secure, SameSite=Lax – saugumo nustatymai.*/
         .json({
             status: 'success', //Nustatomas Set-Cookie antraštė su suformatuotais parametrais ir grąžinamas sėkmingas atsakas.
             msg: 'Tu buvai sekmingai prijungtas prie sistemos',
+            action: 'redirect',
+            href:'/admin',
+
         });
 }
 

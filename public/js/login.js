@@ -24,7 +24,9 @@ password - slaptažodžio reikšmė*/
         })
             .then(res => res.json())//Apdorojamas atsakymas iš serverio - konvertuojamas iš JSON formato į JavaScript objektą.
             .then(data => { //Gauti duomenys iš serverio atsakymo išvedami į konsolę.
-                console.log(data);
+                if (data.status === 'success' && data.action === 'redirect'){
+                    location.href = data.href; /// paprasta komanda kuri is klientines puses nukreipia i norima siuo atveju /admin nuoroda.Cia imi is Postlogin json objekto
+                }
             })
             .catch(console.error);
     });
@@ -42,4 +44,4 @@ Apdoroja serverio atsakymą
 
 Išveda rezultatus arba klaidas į konsolę
 
-Tai yra tipiškas formos apdorojimo pavyzdys naudojant JavaScript Fetch API, kuris leidžia siųsti duomenis į serverį be puslapio perkrovimo.*/
+Tai yra tipiškas formos apdorojimo pavyzdys naudojant JavaScript Fetch API, kuris leidžia siųsti duomenis į serverį be puslapio perkrovimo.*/const formDOM = document.forms[0];
