@@ -6,21 +6,20 @@ import { cookieParser } from './middleware/cookieParser.js';
 import { userData } from './middleware/userData.js';
 import { publicPageRouter } from './routes/publicPageRouter.js';
 import { adminPageRouter } from './routes/adminPageRouter.js';
+import { isAdmin } from './middleware/isAdmin.js';
 
 
 const app = express();
 
 app.use(cookieParser);
 app.use(userData);
-
-
-
-
 app.use(express.json()); // reikalinga isparsinti json faila kad suvaiksciotu 
 app.use(express.static('public'));
+
+
 app.use('/', publicPageRouter);
 app.use('/', publicApiRouter);
-app.use('/', adminPageRouter);
+app.use('/admin', isAdmin,adminPageRouter);
 
 
 

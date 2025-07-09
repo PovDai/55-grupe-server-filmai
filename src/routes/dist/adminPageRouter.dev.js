@@ -30,30 +30,30 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 var adminPageRouter = _express["default"].Router();
 
 exports.adminPageRouter = adminPageRouter;
-adminPageRouter.get('/admin', function (req, res) {
+adminPageRouter.get('/', function (req, res) {
   return res.send(new _Dashboard.PageDashboard(req).render());
 });
-adminPageRouter.get('/admin/categories', function (req, res) {
+adminPageRouter.get('/categories', function (req, res) {
   return res.send(new _Categories.PageAdminCategories(req).render());
 });
-adminPageRouter.get('/admin/categories/published', function (req, res) {
+adminPageRouter.get('/categories/published', function (req, res) {
   return res.send(new _CategoriesPublished.PageAdminCategoriesPublished(req).render());
 });
-adminPageRouter.get('/admin/categories/draft', function (req, res) {
+adminPageRouter.get('/categories/draft', function (req, res) {
   return res.send(new _CategoriesDraft.PageAdminCategoriesDraft(req).render());
 });
-adminPageRouter.get('/admin/categories/new', function (req, res) {
+adminPageRouter.get('/categories/new', function (req, res) {
   return res.send(new _CategoriesNew.PageAdminCategoriesNew(req).render());
 });
-adminPageRouter.get('/admin/movies', function (req, res) {
+adminPageRouter.get('/movies', function (req, res) {
   return res.send(new _Movies.PageAdminMovies(req).render());
 });
-adminPageRouter.get('/admin/movies/published', function (req, res) {
+adminPageRouter.get('/movies/published', function (req, res) {
   return res.send(new _MoviesPublished.PageAdminMoviesPublished(req).render());
 });
-adminPageRouter.get('/admin/movies/draft', function (req, res) {
+adminPageRouter.get('/movies/draft', function (req, res) {
   return res.send(new _MoviesDraft.PageAdminMoviesDraft(req).render());
 });
-adminPageRouter.get('/admin/movies/new', function (req, res) {
+adminPageRouter.get('/movies/new', function (req, res) {
   return res.send(new _MoviesNew.PageAdminMoviesNew(req).render());
 });

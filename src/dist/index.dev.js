@@ -16,6 +16,8 @@ var _publicPageRouter = require("./routes/publicPageRouter.js");
 
 var _adminPageRouter = require("./routes/adminPageRouter.js");
 
+var _isAdmin = require("./middleware/isAdmin.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var app = (0, _express["default"])();
@@ -26,7 +28,7 @@ app.use(_express["default"].json()); // reikalinga isparsinti json faila kad suv
 app.use(_express["default"]["static"]('public'));
 app.use('/', _publicPageRouter.publicPageRouter);
 app.use('/', _publicApiRouter.publicApiRouter);
-app.use('/', _adminPageRouter.adminPageRouter);
+app.use('/admin', _isAdmin.isAdmin, _adminPageRouter.adminPageRouter);
 app.get('*error', function (req, res) {
   return res.send(new _Error.PageError404(req).render());
 });
