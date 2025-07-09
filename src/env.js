@@ -35,6 +35,7 @@ export const DB_PASSWORD = process.env.DB_PASSWORD ?? 'test_password'; //Eksport
 export const DB_HOST = process.env.DB_HOST ?? 'localhost'; //Eksportuojamas duomenų bazės serverio adresas (DB_HOST) su numatytąja reikšme 'localhost'.
 export const DB_PORT = +process.env.DB_PORT ?? 3306; /// + reikalingas kad padarytu i skaitine forma
 export const COOKIE_MAX_AGE = +process.env.COOKIE_MAX_AGE ?? 3600;
+export const NODE_ENV = process.env.NODE_ENV ?? 'dev';
 
 /*Trumpai:
 Šis failas:

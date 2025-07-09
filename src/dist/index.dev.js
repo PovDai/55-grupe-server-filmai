@@ -28,7 +28,7 @@ app.use('/', _publicPageRouter.publicPageRouter);
 app.use('/', _publicApiRouter.publicApiRouter);
 app.use('/', _adminPageRouter.adminPageRouter);
 app.get('*error', function (req, res) {
-  return res.send(new _Error.PageError404().render());
+  return res.send(new _Error.PageError404(req).render());
 });
 app.listen(_env.PORT, function () {
   console.log("WEB URL: http://localhost:".concat(_env.PORT));

@@ -77,7 +77,19 @@ msg – klaidos pranešimas (jei yra).*/
     try {
         const sql = `INSERT INTO login_tokens (user_id, token) VALUES (?, ?);`;
         const [response] = await connection.execute(sql, [userObj.id, loginTokenString]); //Įrašomas naujas token'as į login_tokens lentelę, susiejant jį su vartotojo id.
+/*res.status(500) - Nustato HTTP atsakymo statuso kodą:
 
+500 reiškia "Internal Server Error" (vidinė serverio klaida)
+
+Tai informuoja klientą (naršyklę, aplikaciją), kad įvyko nežinoma serverio klaida
+
+.json({...}) - Siunčia atsakymą JSON formatu:
+
+Įprastai objektas būtų pateiktas riestiniuose skliaustuose {}
+
+Šiuo atveju objektas nepateiktas (tai greičiausiai kodo fragmentas)
+
+Pilnas pavyzdys dažniausiai atrodo taip:*/
         if (response.affectedRows !== 1) {
             return res.status(500).json({
                 status: 'error', //Jei įrašytas ne vienas įrašas (affectedRows !== 1), grąžinama 500 klaida.

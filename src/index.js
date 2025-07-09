@@ -23,7 +23,7 @@ app.use('/', publicApiRouter);
 app.use('/', adminPageRouter);
 
 
-app.get('*error', (req, res) => res.send(new PageError404().render()));
+app.get('*error', (req, res) => res.send(new PageError404(req).render()));
 
 app.listen(PORT, () => {
     console.log(`WEB URL: http://localhost:${PORT}`);

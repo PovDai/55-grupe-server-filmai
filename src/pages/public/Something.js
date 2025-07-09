@@ -4,6 +4,9 @@ import { someTesting } from "../../ui/somethingTest.js";
 
 
 export class PageTest extends PageTemplate {
+    constructor(req) {
+        super(req)
+    }
     main() {
         // Pridedame SVG sprite su checkmark simboliu kad veiktu svg checkai
         const svgSprite = `
