@@ -7,6 +7,8 @@ exports.PageAdminCategories = void 0;
 
 var _AdminTemplate2 = require("../../../templates/AdminTemplate.js");
 
+var _tableCategories = require("../../../ui/tables/tableCategories.js");
+
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -39,7 +41,29 @@ function (_AdminTemplate) {
   _createClass(PageAdminCategories, [{
     key: "main",
     value: function main() {
-      return "\n            <main>\n               <div class=\"container\">\n                    <div class=\"row\">\n                        <div class=\"col-lg-12\">\n                            <h1 class=\"display-5\">All categories</h1>\n                        </div>\n                    </div>\n                </div>\n            </main>";
+      var data = [{
+        id: 1,
+        title: 'Action',
+        url: 'action',
+        description: 'Lorem ipsum...',
+        isPublished: true,
+        moviesCount: 0
+      }, {
+        id: 2,
+        title: 'Crime',
+        url: 'crime',
+        description: 'Lorem ipsum...',
+        isPublished: false,
+        moviesCount: 0
+      }, {
+        id: 3,
+        title: 'Sci-Fi',
+        url: 'sci-fi',
+        description: 'Lorem ipsum...',
+        isPublished: true,
+        moviesCount: 0
+      }];
+      return "\n            <main>\n               <div class=\"container\">\n                    <div class=\"row\">\n                        <div class=\"col-lg-12\">\n                            <h1 class=\"display-5\">All categories</h1>\n                        </div>\n                    </div>\n                </div>\n               <div class=\"container\">\n                    <div class=\"row\">\n                        <div class=\"col-lg-12\">\n                            ".concat((0, _tableCategories.tableCategories)(data), "\n                        </div>\n                    </div>\n                </div>\n            </main>");
     }
   }]);
 

@@ -16,7 +16,8 @@ if (formDOM) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data) // ir virsutinio sukurto objecto value. 
+
     }).then(function (res) {
       return res.json();
     }).then(function (data) {
@@ -26,3 +27,20 @@ if (formDOM) {
     })["catch"](console.error);
   });
 }
+/* Paprasta uzklausa. 
+fetch('https://api.example.com/books')  
+  .then(response => response.json())  // Konvertuoja atsakymą į JSON  
+  .then(data => console.log(data))   // Spausdina gautus duomenis  
+  .catch(error => console.error('Klaida:', error)); // Sugaudo klaidas*/
+
+/*POST užklausos pavyzdys (siunčiam duomenis):
+fetch('https://api.example.com/books', {  
+  method: 'POST',  
+  headers: {  
+    'Content-Type': 'application/json',  
+  },  
+  body: JSON.stringify({ title: "Nauja knyga", author: "Jonas" })  
+})  
+.then(response => response.json())  
+.then(data => console.log('Pavyko:', data))  
+.catch(error => console.error('Klaida:', error));  */
