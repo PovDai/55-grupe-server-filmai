@@ -63,7 +63,7 @@ function (_AdminTemplate) {
         isPublished: true,
         moviesCount: 0
       }];
-      return "\n            <main>\n               <div class=\"container\">\n                    <div class=\"row\">\n                        <div class=\"col-lg-12\">\n                            <h1 class=\"display-5\">All categories</h1>\n                        </div>\n                    </div>\n                </div>\n               <div class=\"container\">\n                    <div class=\"row\">\n                        <div class=\"col-lg-12\">\n                            ".concat((0, _tableCategories.tableCategories)(data), "\n                        </div>\n                    </div>\n                </div>\n            </main>");
+      return "\n            <main>\n               <div class=\"container\">\n                    <div class=\"row\">\n                        <div class=\"col-12\">\n                            <h1 class=\"display-5\">All categories</h1>\n                        </div>\n                    </div>\n                </div>\n               <div class=\"container\">\n                    <div class=\"row\">\n                        <div class=\"col-12\">\n                            ".concat((0, _tableCategories.tableCategories)(data), "\n                        </div>\n                    </div>\n                </div>\n            </main>");
     }
   }]);
 

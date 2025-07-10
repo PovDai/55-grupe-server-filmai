@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.postCategories = postCategories;
+exports.postRegister = postRegister;
 
 var _db = require("../../db.js");
 
@@ -21,21 +21,18 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function postCategories(req, res) {
+function postRegister(req, res) {
   var _IsValid$fields, _IsValid$fields2, err, msg, _req$body, username, email, password, sql, _ref, _ref2, response, salt, passwordHash, _sql, _ref3, _ref4, _response;
 
-  return regeneratorRuntime.async(function postCategories$(_context) {
+  return regeneratorRuntime.async(function postRegister$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
           _IsValid$fields = _IsValid.IsValid.fields(req.body, {
-            //
-            title: 'nonEmptyString',
-            // cia eina is isvalid funkcijos pavadinimai
-            url: 'nonEmptyString',
-            status: 'nonEmptyString'
-          }, {
-            description: 'nonEmptyString'
+            username: 'username',
+            email: 'email',
+            password: 'password',
+            tos: 'tos'
           }), _IsValid$fields2 = _slicedToArray(_IsValid$fields, 2), err = _IsValid$fields2[0], msg = _IsValid$fields2[1];
 
           if (!err) {

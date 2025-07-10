@@ -28,61 +28,53 @@ function () {
 
   _createClass(IsValid, null, [{
     key: "fields",
-    //Eksportuojama klasė IsValid, skirta duomenų validacijai
-    value: function fields(data, requiredSchema, optionalSchema) {
-      /*Statinis metodas fields, kuris priima:
-      data - validuojamus duomenis (objektas)
-      schema - validavimo schemą (objektas)*/
-      var errors = {}; //Sukuriamas tuščias objektas errors, kuriame bus saugomos validavimo klaidos
+    value: function fields(data, requiredSchema) {
+      var optionalSchema = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+      var errors = {};
+      var possibleKeys = Object.keys(requiredSchema).concat(Object.keys(optionalSchema));
 
-      var requiredKeysCount = Object.keys(requiredSchema).length; //Suskaičiuojamas reikalingų laukų skaičius iš validavimo schemos
-
-      var dataKeysCount = Object.keys(data).length; //Suskaičiuojamas gautų duomenų laukų skaičius
-
-      if (dataKeysCount !== requiredKeysCount) {
-        return [true, 'Atejusiuose duomenyse duomenu kiekis nesutampa su reikalaujamu duomenu apimtimi'];
+      for (var key in data) {
+        if (!possibleKeys.includes(key)) {
+          return [true, 'Ka tu cia dirbi?... Pateikei rakta kuris nera nei tarp privalomu, nei tarp papildomu galimu saraso... 👀👀👀'];
+        }
       }
-      /*Jei gautų duomenų laukų skaičius nesutampa su reikalingu, grąžinama klaida:
-      true - klaidos buvimas
-      Klaidos pranešimas apie nesutampantį laukų skaiči*/
 
-
-      for (var key in requiredSchema) {
-        //Ciklas per visus validavimo schemos raktus (laukus)
-        var funcName = requiredSchema[key]; //Gaunamas validavimo funkcijos pavadinimas iš schemos
-
-        var func = IsValid[funcName]; //Gaunama pati validavimo funkcija iš klasės metodų
-
-        var value = data[key]; //Iš duomenų paimama reikšmė, kurią reikia validuoti
+      for (var _key in requiredSchema) {
+        var funcName = requiredSchema[_key];
+        var func = IsValid[funcName];
+        var value = data[_key];
 
         var _func = func(value),
             _func2 = _slicedToArray(_func, 2),
             err = _func2[0],
             msg = _func2[1];
-        /*Iškviečiama validavimo funkcija su reikšme, gaunamas rezultatas:
-        err - ar yra klaida (boolean)
-        msg - klaidos pranešimas (jei yra)*/
-
 
         if (err) {
-          errors[key] = msg; //Jei validavimas nepavyko, klaida įrašoma į errors objektą su atitinkamu raktu
+          errors[_key] = msg;
+        }
+      }
+
+      for (var _key2 in optionalSchema) {
+        var _funcName = optionalSchema[_key2];
+        var _func3 = IsValid[_funcName];
+        var _value = data[_key2];
+
+        if (!_value) {
+          continue;
+        }
+
+        var _func4 = _func3(_value),
+            _func5 = _slicedToArray(_func4, 2),
+            _err = _func5[0],
+            _msg = _func5[1];
+
+        if (_err) {
+          errors[_key2] = _msg;
         }
       }
 
       return [Object.keys(errors).length > 0, errors];
-      /*Grąžinamas validavimo rezultatas:
-      Pirmas elementas - ar yra klaidų (boolean)
-      Antras elementas - objektas su klaidomis (jei yra)*/
     }
-    /*Tikrina, ar gautų duomenų struktūra atitinka schemą
-    Kiekvienam laukui pritaiko atitinkamą validavimo funkciją
-    Surinktas klaidas grąžina struktūruota forma
-    Norint naudoti šią klasę, reikia turėti papildomus validavimo metodus klasėje IsValid, pvz.:
-    nonEmptyString
-    email
-    password
-    etc.*/
-
   }, {
     key: "username",
     value: function username(text) {
