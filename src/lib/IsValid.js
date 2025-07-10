@@ -1,5 +1,5 @@
 export class IsValid {//Eksportuojama klasė IsValid, skirta duomenų validacijai
-    static fields(data, schema) { 
+    static fields(data, requiredSchema,optionalSchema) { 
         /*Statinis metodas fields, kuris priima:
 
 data - validuojamus duomenis (objektas)
@@ -7,7 +7,7 @@ data - validuojamus duomenis (objektas)
 schema - validavimo schemą (objektas)*/
         const errors = {}; //Sukuriamas tuščias objektas errors, kuriame bus saugomos validavimo klaidos
 
-        const requiredKeysCount = Object.keys(schema).length; //Suskaičiuojamas reikalingų laukų skaičius iš validavimo schemos
+        const requiredKeysCount = Object.keys(requiredSchema).length; //Suskaičiuojamas reikalingų laukų skaičius iš validavimo schemos
         const dataKeysCount = Object.keys(data).length; //Suskaičiuojamas gautų duomenų laukų skaičius
 
         if (dataKeysCount !== requiredKeysCount) {
@@ -19,8 +19,8 @@ true - klaidos buvimas
 
 Klaidos pranešimas apie nesutampantį laukų skaiči*/
 
-        for (const key in schema) { //Ciklas per visus validavimo schemos raktus (laukus)
-            const funcName = schema[key]; //Gaunamas validavimo funkcijos pavadinimas iš schemos
+        for (const key in requiredSchema) { //Ciklas per visus validavimo schemos raktus (laukus)
+            const funcName = requiredSchema[key]; //Gaunamas validavimo funkcijos pavadinimas iš schemos
             const func = IsValid[funcName]; //Gaunama pati validavimo funkcija iš klasės metodų
             const value = data[key]; //Iš duomenų paimama reikšmė, kurią reikia validuoti
             const [err, msg] = func(value);
@@ -58,7 +58,7 @@ password
 
 etc.*/
 
-    static username(text) {
+    static username(text) {/// sios funkcijos pavadinimai paskui eina i public js laukuose kintamajam/*
         const minSize = 3;
         const maxSize = 20;
         const allowedSymbols = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

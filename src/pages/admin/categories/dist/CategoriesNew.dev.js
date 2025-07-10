@@ -30,16 +30,20 @@ var PageAdminCategoriesNew =
 function (_AdminTemplate) {
   _inherits(PageAdminCategoriesNew, _AdminTemplate);
 
-  function PageAdminCategoriesNew() {
+  function PageAdminCategoriesNew(req) {
+    var _this;
+
     _classCallCheck(this, PageAdminCategoriesNew);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(PageAdminCategoriesNew).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(PageAdminCategoriesNew).call(this, req));
+    _this.pageJS = 'new-category';
+    return _this;
   }
 
   _createClass(PageAdminCategoriesNew, [{
     key: "main",
     value: function main() {
-      return "\n            <main>\n               <div class=\"container\">\n                    <div class=\"row\">\n                        <div class=\"col-lg-12\">\n                            <h1 class=\"display-5\">New category</h1>\n                        </div>\n                    </div>\n                </div>\n            </main>";
+      return "\n            <main>\n                <div class=\"container\">\n                    <div class=\"row\">\n                        <div class=\"col-12\">\n                            <h1 class=\"display-5\">New category</h1>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"container\">\n                    <div class=\"row\">\n                        <form class=\"col-12 col-md-9 col-lg-6\">\n                            <div class=\"mb-3\">\n                                <label for=\"title\" class=\"form-label\">Title</label>\n                                <input type=\"text\" class=\"form-control\" id=\"title\" required>\n                            </div>\n                            <div class=\"mb-3\">\n                                <label for=\"url\" class=\"form-label\">Url slug</label>\n                                <input type=\"text\" class=\"form-control\" id=\"url\" required>\n                            </div>\n                            <div class=\"mb-3\">\n                                <label for=\"description\" class=\"form-label\">Description</label>\n                                <textarea class=\"form-control\" id=\"description\"></textarea>\n                            </div>\n                            <div class=\"mb-3\">\n                                <label class=\"form-label\">Status</label>\n                                <div class=\"form-check\">\n                                    <input type=\"radio\" name=\"radios\" class=\"form-check-input\" id=\"status_published\" required>\n                                    <label class=\"form-check-label\" for=\"status_published\">Published</label>\n                                </div>\n                                <div class=\"form-check\">\n                                    <input type=\"radio\" name=\"radios\" class=\"form-check-input\" id=\"status_draft\" checked required>\n                                    <label class=\"form-check-label\" for=\"status_draft\">Draft</label>\n                                </div>\n                            </div>\n                            <button type=\"submit\" class=\"btn btn-primary\">Create</button>\n                        </form>\n                    </div>\n                </div>\n            </main>";
     }
   }]);
 

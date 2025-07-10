@@ -29,13 +29,13 @@ function () {
   _createClass(IsValid, null, [{
     key: "fields",
     //Eksportuojama klasė IsValid, skirta duomenų validacijai
-    value: function fields(data, schema) {
+    value: function fields(data, requiredSchema, optionalSchema) {
       /*Statinis metodas fields, kuris priima:
       data - validuojamus duomenis (objektas)
       schema - validavimo schemą (objektas)*/
       var errors = {}; //Sukuriamas tuščias objektas errors, kuriame bus saugomos validavimo klaidos
 
-      var requiredKeysCount = Object.keys(schema).length; //Suskaičiuojamas reikalingų laukų skaičius iš validavimo schemos
+      var requiredKeysCount = Object.keys(requiredSchema).length; //Suskaičiuojamas reikalingų laukų skaičius iš validavimo schemos
 
       var dataKeysCount = Object.keys(data).length; //Suskaičiuojamas gautų duomenų laukų skaičius
 
@@ -47,9 +47,9 @@ function () {
       Klaidos pranešimas apie nesutampantį laukų skaiči*/
 
 
-      for (var key in schema) {
+      for (var key in requiredSchema) {
         //Ciklas per visus validavimo schemos raktus (laukus)
-        var funcName = schema[key]; //Gaunamas validavimo funkcijos pavadinimas iš schemos
+        var funcName = requiredSchema[key]; //Gaunamas validavimo funkcijos pavadinimas iš schemos
 
         var func = IsValid[funcName]; //Gaunama pati validavimo funkcija iš klasės metodų
 
@@ -86,6 +86,7 @@ function () {
   }, {
     key: "username",
     value: function username(text) {
+      /// sios funkcijos pavadinimai paskui eina i public js laukuose kintamajam/*
       var minSize = 3;
       var maxSize = 20;
       var allowedSymbols = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

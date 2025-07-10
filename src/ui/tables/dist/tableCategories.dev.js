@@ -15,7 +15,7 @@ function tableCategories(data) {
   try {
     for (var _iterator = data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
       var category = _step.value;
-      HTML += "\n            <tr>\n                <th scope=\"row\">".concat(nr++, "</th>\n                <td><a href=\"/admin\">").concat(category.title, "</a></td>\n                <td>").concat(category.url, "</td>\n                <td>").concat(category.description, "</td>\n                <td>").concat(category.moviesCount, "</td>\n                <td>").concat(category.isPublished ? 'Published' : 'Draft', "</td>\n                <td>\n                    <a class=\"btn btn-primary btn-sm\" href=\"/admin\">Edit</a>\n                    <button class=\"btn btn-danger btn-sm\">Delete</button>\n                </td>\n            </tr>");
+      HTML += "\n            <tr>\n                <th scope=\"row\">".concat(nr++, "</th>\n                <td><a href=\"/admin\">").concat(category.title, "</a></td>\n                <td>").concat(category.url, "</td>\n                <td>").concat(category.description, "</td>\n                <td>").concat(category.moviesCount, "</td>\n                <td>").concat(category.isPublished ? '<span class="badge text-bg-success">Published</span>' : '<span class="badge text-bg-warning">Draft</span>', "</td>\n                <td>\n                    <a class=\"btn btn-primary btn-sm\" href=\"/admin\">Edit</a>\n                    <button class=\"btn btn-danger btn-sm\">Delete</button>\n                </td>\n            </tr>");
     }
   } catch (err) {
     _didIteratorError = true;
